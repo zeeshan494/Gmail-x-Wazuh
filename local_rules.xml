@@ -1,0 +1,57 @@
+<group name="gmail,email,integration,">
+
+  <rule id="100200" level="3">
+    <decoded_as>gmail_parent</decoded_as>
+    <description>Gmail API: New email event logged</description>
+    <group>gmail_base,</group>
+  </rule>
+
+  <rule id="100201" level="9">
+    <if_sid>100200</if_sid>
+    <match type="pcre2">(?i)subject="[^"]*urgent[^"]*"</match>
+    <description>Gmail API: Email with URGENT keyword in subject - $(srcuser)</description>
+    <group>gmail_keyword,gmail_urgent,</group>
+  </rule>
+
+  <rule id="100202" level="9">
+    <if_sid>100200</if_sid>
+    <match type="pcre2">(?i)subject="[^"]*invoice[^"]*"</match>
+    <description>Gmail API: Email with INVOICE keyword in subject - $(srcuser)</description>
+    <group>gmail_keyword,gmail_finance,</group>
+  </rule>
+
+  <rule id="100203" level="12">
+    <if_sid>100200</if_sid>
+    <match type="pcre2">(?i)subject="[^"]*password[^"]*"</match>
+    <description>Gmail API: Email with PASSWORD keyword - possible phishing - $(srcuser)</description>
+    <group>gmail_keyword,gmail_credential,</group>
+  </rule>
+
+  <rule id="100204" level="9">
+    <if_sid>100200</if_sid>
+    <match type="pcre2">(?i)subject="[^"]*(reset|verify|verification|confirm)[^"]*"</match>
+    <description>Gmail API: Email with account action keyword in subject - $(srcuser)</description>
+    <group>gmail_keyword,gmail_phishing,</group>
+  </rule>
+
+  <rule id="100210" level="9">
+    <if_sid>100200</if_sid>
+    <match type="pcre2">(?i)from="[^"]+@(?!(gmail|googlemail|yahoo|outlook|hotmail|proton\.me|icloud|live)\.[^"]+")[^"]+"</match>
+    <description>Gmail API: Email from non-standard sender domain - $(srcuser)</description>
+    <group>gmail_suspicious_domain,</group>
+  </rule>
+
+  <rule id="100211" level="12">
+    <if_sid>100210</if_sid>
+    <match type="pcre2">(?i)subject="[^"]*(password|verify|urgent|reset|invoice|confirm|account|suspended|security)[^"]*"</match>
+    <description>Gmail API: High confidence phishing - suspicious domain and keyword - $(srcuser)</description>
+    <group>gmail_suspicious_domain,gmail_phishing,</group>
+  </rule>
+
+  <rule id="100220" level="9" frequency="10" timeframe="60">
+    <if_matched_sid>100200</if_matched_sid>
+    <description>Gmail API: Email burst detected - 10 emails in 60 seconds</description>
+    <group>gmail_burst,</group>
+  </rule>
+
+</group>
