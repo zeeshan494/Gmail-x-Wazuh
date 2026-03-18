@@ -1,0 +1,15 @@
+<decoder name="gmail_parent">
+  <prematch>^integration=gmail </prematch>
+</decoder>
+
+<decoder name="gmail_fields">
+  <parent>gmail_parent</parent>
+  <regex>^integration=gmail\s+from="([^"]+)"\s+subject="([^"]+)"\s+timestamp="([^"]+)"</regex>
+  <order>srcuser, extra_data, id</order>
+</decoder>
+
+<decoder name="gmail_domain">
+  <parent>gmail_parent</parent>
+  <regex>^integration=gmail\s+from="[^@]+@([^"]+)"</regex>
+  <order>hostname</order>
+</decoder>
