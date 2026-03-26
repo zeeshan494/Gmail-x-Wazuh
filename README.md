@@ -16,8 +16,7 @@ I built a Gmail → Wazuh integration from scratch
 ✔ Suspicious domain alerts
 ✔ Burst activity detection
 
-⚡ Demo (Add your GIF here)
-<p align="center"> <img src="https://via.placeholder.com/900x400?text=Add+Demo+GIF+Here" /> </p>
+
 🧠 Problem Statement
 
 Modern attacks don’t break in — they log in.
@@ -52,9 +51,7 @@ Wazuh Logcollector
       ▼
 Decoders → Rules → Alerts
 
-📌 Replace with diagram:
 
-📷 Add architecture diagram here (draw.io / excalidraw recommended)
 
 🧾 Log Format (Critical Design)
 integration=gmail from="user@example.com" subject="Urgent Invoice" timestamp="2026-03-18T12:00:00Z"
