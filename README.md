@@ -81,11 +81,12 @@ def sanitise_field(value):
 </decoder>
 🚨 Detection Rules
 🔥 Phishing Keywords
-<match type="pcre2">(?i)subject="[^"]*password[^"]*"</match>
+(?i)subject="[^"]*password[^"]*"
 🌐 Suspicious Domains
-<match type="pcre2">from="[^"]+@(?!(gmail|yahoo|outlook)\.)</match>
+from="[^"]+@(?!(gmail|yahoo|outlook)\.)
 ⚡ Burst Detection
-frequency="10" timeframe="60"
+frequency="10"
+timeframe="60"
 📊 What You Detect
 Threat Type	Detection
 Phishing Emails	✅
@@ -97,16 +98,16 @@ Email Flooding	✅
 python3 gmail_collector.py --test-line
 tail -f /var/ossec/logs/alerts.log
 ⚙️ Setup Overview
-1️⃣ Google Cloud
-Create project
+1️⃣ Google Cloud Setup
+Create Project
 Enable Gmail API
-Create OAuth credentials
+Create OAuth Credentials
 Download credentials.json
 2️⃣ Python Setup
 pip install google-auth google-auth-oauthlib google-api-python-client
 3️⃣ Run Collector
 python3 gmail_collector.py
-4️⃣ Wazuh Config
+4️⃣ Wazuh Configuration
 <localfile>
   <log_format>syslog</log_format>
   <location>/var/ossec/logs/gmail.log</location>
@@ -127,12 +128,6 @@ This proves:
 👉 Wazuh is not limited to built-in integrations
 👉 You can monitor ANY data source
 👉 Even your personal Gmail security
-🚀 Future Improvements
-📎 Attachment scanning
-🤖 SOAR automation
-📧 Auto-label phishing emails
-📊 Dashboard visualizations
-🤝 Contribute / Connect
 
 If you build something like this — I’d love to see it.
 
