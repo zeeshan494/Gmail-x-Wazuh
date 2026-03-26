@@ -1,5 +1,4 @@
 🚀 Gmail Security Monitoring with Wazuh (Custom Integration)
-<p align="center"> <img src="https://img.shields.io/badge/Wazuh-SIEM-blue?style=for-the-badge&logo=elastic" /> <img src="https://img.shields.io/badge/Gmail-API-red?style=for-the-badge&logo=gmail" /> <img src="https://img.shields.io/badge/Python-Automation-yellow?style=for-the-badge&logo=python" /> <img src="https://img.shields.io/badge/OpenSource-Security-green?style=for-the-badge" /> </p>
 <p align="center"> <b>🔥 What if your inbox is under attack… and your SIEM doesn’t even know?</b> </p>
 🎯 The Idea
 
@@ -11,12 +10,11 @@ This project changes that.
 I built a Gmail → Wazuh integration from scratch
 — no plugins, no marketplace, no native support.
 
+✅ Features
 ✔ Real-time email monitoring
 ✔ Phishing detection
 ✔ Suspicious domain alerts
 ✔ Burst activity detection
-
-
 🧠 Problem Statement
 
 Modern attacks don’t break in — they log in.
@@ -51,7 +49,7 @@ Wazuh Logcollector
       ▼
 Decoders → Rules → Alerts
 
-
+📌 Tip: Add a diagram image here for better visualization
 
 🧾 Log Format (Critical Design)
 integration=gmail from="user@example.com" subject="Urgent Invoice" timestamp="2026-03-18T12:00:00Z"
@@ -113,17 +111,15 @@ python3 gmail_collector.py
   <log_format>syslog</log_format>
   <location>/var/ossec/logs/gmail.log</location>
 </localfile>
-5️⃣ Restart
+5️⃣ Restart Wazuh
 sudo systemctl restart wazuh-manager
-⏱️ Automation
+⏱️ Automation (Cron Job)
 */5 * * * * python3 /opt/wazuh-gmail/gmail_collector.py
 🧠 Lessons Learned
-
-⚠️ JSON logs can break Wazuh (Too many fields)
-⚠️ XML in Wazuh is strict (no headers!)
+⚠️ JSON logs can break Wazuh (Too many fields error)
+⚠️ Wazuh XML is strict (no headers allowed)
 ⚠️ Sanitization is EVERYTHING
 ⚠️ Debugging SIEM ≠ debugging code
-
 🔥 Why This Matters
 
 This proves:
@@ -131,7 +127,6 @@ This proves:
 👉 Wazuh is not limited to built-in integrations
 👉 You can monitor ANY data source
 👉 Even your personal Gmail security
-
 🚀 Future Improvements
 📎 Attachment scanning
 🤖 SOAR automation
@@ -150,5 +145,4 @@ If this helped you:
 ⭐ Star the repo
 🔁 Share with others
 💬 Reach out for collaboration
-
 <p align="center"> <b>Security is not about tools — it's about visibility.</b> </p>
