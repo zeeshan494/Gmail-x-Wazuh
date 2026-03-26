@@ -87,6 +87,8 @@ from="[^"]+@(?!(gmail|yahoo|outlook)\.)
 ⚡ Burst Detection
 frequency="10"
 timeframe="60"
+
+
 📊 What You Detect
 Threat Type	Detection
 Phishing Emails	✅
@@ -94,26 +96,35 @@ Fake Invoices	✅
 Password Attacks	✅
 Suspicious Domains	✅
 Email Flooding	✅
+
+
 🧪 Testing
 python3 gmail_collector.py --test-line
 tail -f /var/ossec/logs/alerts.log
+
+
 ⚙️ Setup Overview
 1️⃣ Google Cloud Setup
 Create Project
 Enable Gmail API
 Create OAuth Credentials
 Download credentials.json
+
 2️⃣ Python Setup
 pip install google-auth google-auth-oauthlib google-api-python-client
+
 3️⃣ Run Collector
 python3 gmail_collector.py
+
 4️⃣ Wazuh Configuration
 <localfile>
   <log_format>syslog</log_format>
   <location>/var/ossec/logs/gmail.log</location>
 </localfile>
+
 5️⃣ Restart Wazuh
 sudo systemctl restart wazuh-manager
+
 ⏱️ Automation (Cron Job)
 */5 * * * * python3 /opt/wazuh-gmail/gmail_collector.py
 🧠 Lessons Learned
@@ -123,8 +134,8 @@ sudo systemctl restart wazuh-manager
 ⚠️ Debugging SIEM ≠ debugging code
 🔥 Why This Matters
 
-This proves:
 
+This proves:
 👉 Wazuh is not limited to built-in integrations
 👉 You can monitor ANY data source
 👉 Even your personal Gmail security
